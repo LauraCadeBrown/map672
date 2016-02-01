@@ -35,26 +35,26 @@
             
             }*/
         h1 {
-    font-size: 1.6em;
-    margin-left: 25px;
-}  /*This CSS determines the heading's font-size and margin*/
-h2 {
-    font-size: 1.4em;
-    margin-left: 25px;
-}/*This CSS determines the subheading font-size and margin*/
-p {
-    font-size: 1em;
-    margin: 15px 25px;
-    max-width: 800px;
-}
-         a {
+            font-size: 1.6em;
+            margin-left: 25px;
+        }  /*This CSS determines the heading's font-size and margin*/
+        h2 {
+            font-size: 1.4em;
+            margin-left: 25px;
+        }/*This CSS determines the subheading font-size and margin*/
+        p {
+            font-size: 1em;
+            margin: 15px 25px;
+            max-width: 800px;
+        }
+        a {
             color: deeppink;
             font-weight: bold;
             text-decoration: none;
-            }
+        }
         a:hover {
             text-decoration: underline;
-            }
+        }
         /*img {
             margin-left: 25px;
             border: 7px dotted blue;
@@ -75,15 +75,6 @@ p {
             display: inline-block;
             margin: 0 25px;
         }
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset=utf-8 />
-    <title>MAP672 Module 2 Template</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-</head>
     </style>
 </head>
 
@@ -107,6 +98,7 @@ p {
     <div class="circle"></div>
     <div class="circle"></div>
 
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         // JavaScript code goes here  
         document.querySelector('h1').innerHTML='web mapping is sweet!';
@@ -116,16 +108,17 @@ p {
         
         var elements = document.getElementsByClassName('circle');
 
-for(var i=0; i <= elements.length-1;i++){
-    elements[i].style['border-radius'] = '20%';  
-}
+        for(var i=0; i <= elements.length-1;i++){
+            elements[i].style['border-radius'] = '20%';  
+        }
         //here is a user function that changes the square to a rectangle upon clicking it
         map.addEventListener('click', function() {
-    this.style.width = '400px';   
-});
+            this.style.width = '400px';   
+        });
+       
         var newListItem = document.createElement('li');
-newListItem.innerHTML = "list item 4";
-document.querySelector('ul').appendChild(newListItem);
+        newListItem.innerHTML = "list item 4";
+        document.querySelector('ul').appendChild(newListItem);
         
         console.log("hello map");
     </script>
