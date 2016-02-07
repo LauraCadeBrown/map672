@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 03 Starter Template</title>
+    <title>Basketball Triangle of Kentucky</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -44,13 +44,13 @@
             font-size: 1em;
             color: #001323;
         }
-        /* Additional style rules go here! */
+    
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Basketball Triangle of Kentucky </h1>
+        <h1>Basketball Triangle of Kentucky</h1>
         <h2>And a Tiny, Important City in Between, Also Known As the Capital</h2>
     </header>
 
@@ -59,9 +59,7 @@
     <footer>
         <p>Map authored by Laura Brown</p>
         <p>Map created for Maps672 on February 5, 2016. Population calucations from 2010 and 2014 census data from google searches. </p>
-        <p>3-point field goal percentage (available since the 1979-80 season in the nba); the formula is 3p / 3pa. age; player age on february 1 of the given season. the formula is (award points) / (maximum number of award points). for example, in the 2002-03 mvp voting tim duncan had 962 points out of a possible 1190. his mvp award share is 962 / 1190 = 0.81. drb fg% free throws four factors dean oliver's "four factors of basketball success"; please see the article four factors for more information. pythagorean losses; the formula is g - w pyth. league opp player efficiency rating (available since the 1951-52 season); per is a rating developed by espn.com columnist john hollinger. in john's words, "the per sums up all a player's positive accomplishments, subtracts the negative accomplishments, and returns a per-minute rating of a player's performance." please see the article calculating per for more information. also see vaa and var. sos strength of schedule; a rating of strength of schedule. the rating is denominated in points above/below average, where zero is average. my colleague doug drinen of pro-football-reference.com has written a great explanation of this method. stl turnovers (available since the 1977-78 season in the nba) true shooting percentage; the formula is pts / (2 * tsa). true shooting percentage is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws. w w-l% win shares; an estimate of the number of wins contributed by a player. please see the article calculating win shares for more information..
-
-.
+        <p>3-point field goal percentage (available since the 1979-80 season in the nba); the formula is 3p / 3pa. age; player age on february 1 of the given season. the formula is (award points) / (maximum number of award points). for example, in the 2002-03 mvp voting tim duncan had 962 points out of a possible 1190. his mvp award share is 962 / 1190 = 0.81. drb fg% free throws four factors dean oliver's "four factors of basketball success"; please see the article four factors for more information. pythagorean losses; the formula is g - w pyth. league opp player efficiency rating (available since the 1951-52 season); per is a rating developed by espn.com columnist john hollinger. in john's words, "the per sums up all a player's positive accomplishments, subtracts the negative accomplishments, and returns a per-minute rating of a player's performance." please see the article calculating per for more information. also see vaa and var. sos strength of schedule; a rating of strength of schedule. the rating is denominated in points above/below average, where zero is average. my colleague doug drinen of pro-football-reference.com has written a great explanation of this method. stl turnovers (available since the 1977-78 season in the nba) true shooting percentage; the formula is pts / (2 * tsa). true shooting percentage is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws. w w-l% win shares; an estimate of the number of wins contributed by a player. please see the article calculating win shares for more information.
         </p>
     </footer>
 
@@ -84,15 +82,12 @@
         });
         map.addLayer(tiles);
         
-        // BEGIN WRITING CODE FOR LAB 03 HERE
         
-        
-        
-        var city1Name = "Lexington";
-        var city1Lat = 37.9886892;
-        var city1Lon = -84.4777153; 
-        var city1Pop = 310797;
-        var city1Capital = false; 
+        var city1Name = 'Lexington',  // note how you can declare multiple variables with a single
+            city1Lat = 38.0297,       // var statement and commas between them
+            city1Lon = -84.4947,
+            city1Pop = 308428,
+            city1Capital = false; 
        
         var city2Name = "Frankfort";
         var city2Lat = 38.200906;
@@ -113,11 +108,8 @@
         console.log ("The average population of these cities is:" , averagepop);
         
         var cities = [city1Name, city2Name, city3Name];
-        console.log (cities);
+        console.log (cities[3]);   // task wanted the 3rd element logged to Console
         
-        
-        
-        // END WRITING CODE FOR LAB 03 HERE
         
         // CITY1 MARKER CODE HERE
         var city1Popup = "<b>"+city1Name+"</b><br>"
