@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Research Triangle of Basketball</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+        /* Additional style rules go here! */
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>North Carolina Research Triangle</h1>
+        <p>
+        </p>
+        <h2>Of Basketball</h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Map authored by Laura Brown</p>
+        <p>Population from 2013 US Census data and geographic information obtained from LatLong.net.</p>
+        <p> <p>3-point field goal percentage (available since the 1979-80 season in the nba); the formula is 3p / 3pa. age; player age on february 1 of the given season. the formula is (award points) / (maximum number of award points). for example, in the 2002-03 mvp voting tim duncan had 962 points out of a possible 1190. his mvp award share is 962 / 1190 = 0.81. drb fg% free throws four factors dean oliver's "four factors of basketball success"; please see the article four factors for more information. pythagorean losses; the formula is g - w pyth. league opp player efficiency rating (available since the 1951-52 season); per is a rating developed by espn.com columnist john hollinger. in john's words, "the per sums up all a player's positive accomplishments, subtracts the negative accomplishments, and returns a per-minute rating of a player's performance." please see the article calculating per for more information. also see vaa and var. sos strength of schedule; a rating of strength of schedule. the rating is denominated in points above/below average, where zero is average. my colleague doug drinen of pro-football-reference.com has written a great explanation of this method. stl turnovers (available since the 1977-78 season in the nba) true shooting percentage; the formula is pts / (2 * tsa). true shooting percentage is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws. w w-l% win shares; an estimate of the number of wins contributed by a player. please see the article calculating win shares for more information.
+        </p>
+    </footer>
+
+    <script>
+        var map;
+        var targetDiv = 'map';
+
+        var options = {
+            center: [35.89, -78.890],
+            zoom: 10
+        }
+        map = L.map(targetDiv, options);
+        var tiles = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+});
+        map.addLayer(tiles);
+        
+        
+     
+        var cities = ["Chapel Hill", "Durham", "Raleigh"];
+        var cityCoords = [
+            [35.913200, -79.055847], 
+            [36.002453, -78.905869], 
+            [35.787743, -78.644257]
+        ];
+        
+        var cityPop = [59639, 245475, 431746];
+        var cityCapital = [false, false, true];
+
+        
+
+        
+        for(var i = 0; i < cities.length; i++) {
+           
+            var popup = "<b>"+[cities[i]]+"</b><br>"
+                            +"<b>population</b>: "+[cityPop[i]];
+
+           // if(cities[i]=== "Raleigh") {  Is this a less efficient way of doing it?
+               
+             //   popup += "<br>Is the capital city."; 
+                
+           if(cityCapital[i]=== true) {
+               
+                popup += "<br>Is the capital city."; 
+                
+            } 
+             
+           
+            L.marker(cityCoords[i]).addTo(map).bindPopup(popup);
+        }
+        
+       
+        
+          
+    </script>
+    
+</body>
