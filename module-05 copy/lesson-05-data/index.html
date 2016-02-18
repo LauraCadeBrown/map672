@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Lesson 05 Laura Brown</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+</head>
+
+<body>
+
+
+<script>
+
+    function hellomap() {
+        console.log("Hello map");
+    }
+    
+    hellomap();
+    hellomap();
+    hellomap();
+    
+    
+    var helloMap = function(){
+        console.log ("Hello Map");
+    }
+    helloMap();
+    
+    function outerFunction(message) {
+        console.log(message);
+        var innerFunction = function(message) {
+            console.log(message);
+        };
+        innerFunction("I’m inside!"); //this comes second
+    }
+    outerFunction("i'm outside!"); //this comes first
+    
+    
+    function saySomething(message){
+        console.log(message);
+    }
+    
+    var firstMessage = "Hello Map";
+    saySomething(firstMessage);
+
+    var secondMessage = "Please enter the address you'd like to search for."
+    saySomething(secondMessage);
+    
+    var thirdMessage = "Is this correct?"
+    saySomething(thirdMessage);
+    
+    function calcAreaRect(width,height){
+        var area = width * height;
+        console.log(area);
+    }
+    
+    calcAreaRect(40,30);
+    
+    var width = 40;
+    var height = 30;
+    calcAreaRect (width, height);
+    
+    var peanutButter = 40;
+    var jelly = 30;
+    calcAreaRect(peanutButter, jelly);
+    
+    function calcAreaRect(width,height){
+        var area = width * height;
+        return area; 
+    }
+
+    var calculatedArea = calcAreaRect(40,30);  
+    console.log(calculatedArea);
+    
+    
+    function sayThings() {
+
+        console.log("thing 1"); // will output to console
+        console.log("thing 2"); // will output to console
+        return;                  // returns an `undefined` value
+        console.log("thing 3"); // will NOT output to console
+    }
+
+    sayThings();
+    
+    
+    function getMultiValues() {
+        var value1 = 5;
+        var value2 = "iguana";
+        return [value1, value2];
+    }
+
+    var values = getMultiValues();
+        console.log(values[0]); 
+        console.log(values[1]); 
+    
+    
+    function sayHello (){
+        var greeting = "Hi, I’m a web mapper.";
+        console.log(greeting);
+    }
+
+    sayHello(); //this part makes the function run
+    //console.log(greeting); // throws an error
+    
+    function sayHello(){
+        var greeting = "Hi, I’m a web mapper."; // variable defined within the function scope
+        console.log(greeting); // output is "Hi, I’m a web mapper"
+}
+
+    sayHello();  // output is "Hi, I’m a web mapper" is local
+
+    var greeting = "Howdy, I'm a cartographer"; // variable defined within the global scope
+        console.log(greeting); // output is "Howdy, I'm a cartographer" is global
+    
+</script>
+    
+</body>
+
+</html>
