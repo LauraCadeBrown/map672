@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 05 Starter Template</title>
+    <title>Laura Brown-Lab 05</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -52,15 +52,15 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>University Cities</h1>
+        <h2>Of KY and TN</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Laura Brown</p>
+        <p>Geographic information taken from latlong.net. Population figures from US Census Data, 2013.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
         </p>
     </footer>
@@ -69,7 +69,7 @@
     
     var options = {
         center: [38.0489,-84.5025],
-        zoom: 8
+        zoom: 7
     }
     
     var map = L.map('map', options);
@@ -81,57 +81,114 @@
     });
     map.addLayer(tiles);
 
-    // begin writing/editing Lab 05 code here
-
+    
     var lexArea = Number(prompt("Enter data", "Enter the area of Lexington in square miles"));
-    // create a second variable to collect a second city's area here
-    // create a third variable to collect a third city's area here
-
-    prepareData(lexArea); // modify this function call to pass all three variables
-
-    function prepareData(lexArea) { /* modify function to include 2 more parameters */
-
-        var cities = ["Lexington"]; /* add 2nd and 3rd city names */
+    var nashArea= Number(prompt( "Enter data", "Enter the area of Nashville in square miles"));
+    var knoxArea= Number(prompt( "Enter data", "Enter the area of Knoxville in square miles"));
+     
+    var cityAreas = [lexArea, nashArea, knoxArea];
+    var cityPop = [308428, 659042, 183270]; 
+    
+    console.log (cityAreas);
+    
+    var cities = ["Lexington", "Nashville", "Knoxville"]; 
+    
+    
+    for(var i = 0; i < cities.length; i++) {
+                 var density = calDensity (cityPop[i], cityAreas[i]);
+                 console.log (density);
+              function calDensity (population, area){  
+                  return cityPop[i] / cityAreas[i];
+                 
+                }
+         
+     
+        
+        }
+    
+   
+    
+        
+    function prepareData (lexArea, nashArea, knoxArea){
+        
+        var cities = ["Lexington", "Nashville", "Knoxville"]; 
+        
         var cityCoords = [
-            [38.0297, -84.4947] 
-            /* include 2nd city lat/lon here */
-            /* include 3rd city lat/lon here */
-
+            [38.0297, -84.4947], 
+            [36.162664, -86.781602],
+            [35.960638, -83.920739]
         ];
-        var cityPops = [308428]; /* include 2nd and 3rd city pops here */
+        
+        var cityPop = [308428, 659042, 183270]; 
 
-        var cityAreas = [lexArea]; /* include 2nd and 3rd city areas */
+        var cityAreas = [lexArea, nashArea, knoxArea]; 
+        
+        
+        
+        console.log(cities);
 
-       // call the mapCities function, passing the 4 arrays created above as arguments
-
+        console.log(cityAreas);
+        
     }
+  
+    //prepareData (lexArea, nashArea, knoxArea);
+    
+     // call the mapCities function, passing the 4 arrays created above as arguments
 
-    function mapCities(cities, cityCoords) { /* include 2 more parameters here */
 
+    //function mapCities(cities, cityCoords, cityPops, cityAreas){ 
+        
+    
+        var cities = ["Lexington", "Nashville", "Knoxville"];
+        
+        var cityPop = [308428, 659042, 183270];  
+    
         var units = prompt('Units for calculating density', 'Enter "miles" or "km"');
+        
+        var measure = "miles";
+            if (units===measure){
+                console.log (measure + " is the unit");
+            }
+            else {
+                console.log ("km is the unit");
+            }
 
-        for(var i = 0; i < cities.length; i++) {
+       var cityCoords = [
+            [38.0297, -84.4947], 
+            [36.162664, -86.781602],
+            [35.960638, -83.920739]
+        ];
+        
+        
 
-            /*var density =  call a function named calcPopDensity here, passing
-                             the city population, area, and units as arguments, and assign
-                             return value to the "density" variable */
+            
+        
+            for(var i = 0; i < cities.length; i++) {
+           
+           
+            if (units===measure){
+                var popup = "<b>"+[cities[i]]+"</b><br>"
+                            +"<b>population</b>: "+[cityPop[i]]+"</b><br>"
+                            +"<b>density</b>:" + [cityPop[i]/cityAreas[i]] +" people per sq miles";
+                console.log (measure + " is the unit");
+            }
+            else {
+                var popup = "<b>"+[cities[i]]+"</b><br>"
+                            +"<b>population</b>: "+[cityPop[i]]+"</b><br>"
+                            +"<b>density</b>:" + [cityPop[i]/cityAreas[i]/2.5] +" people per sq km ";
+                console.log ("km is the unit");
+            }
+                
+            
+                          
+            
+            
 
-            var popup = "<b>"+cities[i]+"</b><br>"
-                            //+"<b>Density</b>: "+density.toLocaleString()+" people per sq " + units;
-
-            L.marker(cityCoords[i]).addTo(map)
-                .bindPopup(popup);
+            L.marker(cityCoords[i]).addTo(map).bindPopup(popup);
 
         }
-    }
-
-    // write a function named calcPopDensity which accepts three arguments, the  
-    // population, the area of a single city, and the units ('miles' or 'km') entered by
-    // the user above. The function should calculate the density of the city with these two 
-    // values and return the result to where the function was called.
-
-
-    // end writing/editing Lab 05 code here
+    
+   //Hi Rich--This is what I have that works at midnight on Friday. I didn't understand the why and how of the two functions: prepareData and mapCities.  When I tried to include them more as functions, things just didn't work. I'm not sure what the technical difference is here, what makes my method more roundabout/less efficient. Thanks! I'll try the challenge later.
 
 </script>
     
