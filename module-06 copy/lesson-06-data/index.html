@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lesson 06 Starter Template</title>
+    <title>Laura Brown, Lesson 06</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 </head>
 
@@ -11,9 +11,160 @@
 
 
 <script>
-/* JavaScript code goes here! */
+  var iguana = { 
+    name: "Jack",   
+    weight: 4.2,    
+    age: 8,         
+    eyes: "dreamy", 
+    questForWorldDomination: true  
+  }
+console.log(iguana);
+    
+    var iguana = { 
+    questForWorldDomination: true,  
+    age: 8, 
+    eyes: "dreamy",
+    name: "Jack", 
+    weight: 4.2 // assume kilograms
+    }
+console.log(iguana);
 
+    var iguana = { 
+    questForWorldDomination: true,  
+    age: 8, 
+    eyes: "dreamy",
+    name: "Jack", 
+    weight: 4.2,
+    toolkit: {
+        conquestFlag: "red",
+        surrenderFlag: "white",
+        food: true,
+        music: "Anthrax",
+        coolSunGlasses: 8
+        }
+    }
+console.log(iguana);
+console.log(iguana.name); 
+console.log(iguana.weight); 
+console.log(iguana.toolkit.music);  
+console.log(iguana["name"]); 
+console.log(iguana["weight"]); 
+console.log(iguana.age);
 
+iguana.weight = 5.2;
+iguana.age = 9;
+
+console.log(iguana.weight); 
+console.log(iguana.age); 
+
+iguana["weight"] = 6.1;
+iguana["age"] = 10;
+
+console.log(iguana.weight); 
+console.log(iguana.age); 
+    
+iguana.color = "green";
+iguana.madGenius = true;
+
+console.log(iguana);
+
+iguana["color"] = "purple";
+iguana["unlovedAsBaby"] = true; // haha!
+
+console.log(iguana); 
+    
+for (var key in iguana) {
+    console.log(key); 
+}
+
+for (var key in iguana) {
+    console.log(iguana[key]);
+}
+    
+    var iguana = { 
+    name: "Jack", 
+    weight: 4.2, 
+    age: 8, 
+    eyes: "dreamy",
+    questForWorldDomination: true 
+}
+
+for (var key in iguana) {
+    console.log(key, iguana[key]); 
+}
+    
+    var iguana = { 
+    name: "Jack", 
+    weight: 4.2, 
+    age: 8, 
+    eyes: "dreamy",
+    questForWorldDomination: true, 
+    greeting: function() {
+        console.log("Hello. I am your new overlord.");
+    }
+}
+
+iguana.greeting();
+iguana.greeting("Howdy there.");
+iguana.greeting("I am your new overlord.");
+
+iguana.length = 1.5;
+    
+    console.log(iguana.lenght);
+    
+    var iguana = { 
+    name: "Jack", 
+    weight: 4.2, // kilos
+    length: 1.5, 
+    age: 8, 
+    eyes: "dreamy",
+    questForWorldDomination: true, 
+    calculateBMI: function(w,l) {
+        return w / (l*l); 
+    }
+}
+var result = iguana.calculateBMI(4.2,1.5);
+console.log(result);
+    
+    var iguana = { 
+    name: "Jack", 
+    weight: 4.2, // kilos
+    length: 1.5, // meters
+    age: 8, 
+    eyes: "dreamy",
+    questForWorldDomination: true, 
+    calculateBMI: function() {
+        var w = this.weight;
+        var l = this.length;
+        return w/(l*l);
+    }
+}
+
+var result = iguana.calculateBMI();
+console.log(result);
+    
+    var iguana = { 
+    name: "Jack", 
+    weight: 4.2, 
+    age: 8, 
+    eyes: "dreamy",
+    questForWorldDomination: true, 
+    invasionPlans: function(inData) {
+        // iguana can do something with data here
+        console.log(inData);
+    }
+}
+
+var lexData = {
+    lat: 38.23,
+    lon: -89.21,
+    name: "Lexington",
+    pop: 821325
+
+}
+
+iguana.invasionPlans(lexData);
+                   
 </script>
     
 </body>
