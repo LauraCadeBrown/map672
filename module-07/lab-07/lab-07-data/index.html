@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 07 Starter Template</title>
+    <title>Laura Brown-Lab 07</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -52,31 +52,60 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Geography of the Taco Trek</h1>
+        <h2>It's a pretty steep hike</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Laura Brown</p>
+        <p>Map Data from Leaflet and Open Maps.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
         </p>
     </footer>
 
     <script>
 
-    var map = L.map('map', {
-        center: [40,-94],
-        zoom: 4
-    });
-                
-    var redIguana = L.latLng(40.7718,-111.9124);
+        var map = L.map('map', {
+            center: [40,-94],
+            zoom: 4
+        });
+    
+        var tiles = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 10, //this was supposed to be 12, but this tile doesn't zoom in that much, so I changed it.
+                minZoom: 4,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            });    
+        map.addLayer(tiles);  
         
-    map.on('click', function(e){
-        console.log(e.latlng);   
-    });
+        
+        var redIguana = L.latLng(40.7718,-111.9124);
+        L.marker(redIguana).addTo(map);
+        
+    
+        map.on('click', function(e){
+        var otherCity= e.latlng; 
+            L.marker(otherCity).addTo(map);
+            map.panTo(otherCity);
+            map.setZoom(6);
+            var distance = redIguana.distanceTo(otherCity);
+            console.log(distance + " Is the distance between this city and the Red Iguana"); 
+            var bounds = map.getBounds(); 
+            var bottomLeft = bounds.getSouthWest(); 
+            console.log(bottomLeft.lat, bottomLeft.lng); 
+            var boxDistance=redIguana.distanceTo(bottomLeft);
+            console.log(boxDistance + " Distance from SW to Red Iguana")
+        });
+        
+       
+        
+        
+        
+        
+        
+       
+
                   
     </script>
     
