@@ -87,7 +87,12 @@
         map.on('click', function(e){
         var otherCity= e.latlng; 
             L.marker(otherCity).addTo(map);
-            map.panTo(otherCity);
+            var options ={
+                center: otherCity,
+                zoom: 6
+                }
+            
+            map.panTo(otherCity, options);
             map.setZoom(6);
             var distance = redIguana.distanceTo(otherCity);
             console.log(distance + " Is the distance between this city and the Red Iguana"); 
@@ -96,6 +101,8 @@
             console.log(bottomLeft.lat, bottomLeft.lng); 
             var boxDistance=redIguana.distanceTo(bottomLeft);
             console.log(boxDistance + " Distance from SW to Red Iguana")
+            
+        
         });
         
        
