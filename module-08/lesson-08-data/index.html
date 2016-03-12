@@ -7,7 +7,10 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-
+    <script src="power-plants.js"`></script>
+    <script>
+    // custom JavaScript here
+    </script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
@@ -49,22 +52,22 @@
 
 <body>
     <header>
-        <h1>Brazilian cities</h1>
-        <h2>I have lived in</h2>
+        <h1>Plants,</h1>
+        <h2>Not the organic kind</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
         <p>Map authored by Laura Brown</p>
-        <p>Coordinates from Google search</p>
+        <p>The data are 6900 electrical generating power plants across the US obtained from the {EIA's form 923](http://www.eia.gov/electricity/data/eia923/).</p>
     </footer>
 
     <script>
         
     var map = L.map('map', {
-        center: [-22, -43], // centered on Rio
-        zoom: 5,
+        center: [36, -94], 
+        zoom: 4,
     });
 
     var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
@@ -76,93 +79,30 @@
     tiles.addTo(map);
     
     
-   
-      
-    var places = {
-            "type": "FeatureCollection",
-            "features": [
-            {
-              "type": "Feature",
-              "properties": {
-                "marker-color": "#7e7e7e",
-                "marker-size": "medium",
-                "marker-symbol": "",
-                "name": "Florianópolis",
-                "size": 168.5
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -48.47167968749999,
-                  -27.527758206861886
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {
-                "marker-color": "#7e7e7e",
-                "marker-size": "medium",
-                "marker-symbol": "",
-                "name": "São Paulo",
-                "size": 588
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -46.53808593749999,
-                  -23.483400654325628
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {
-                "marker-color": "#7e7e7e",
-                "marker-size": "medium",
-                "marker-symbol": "",
-                "name": "Rio de Janeiro",
-                "size": 485
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -43.154296875,
-                  -22.836945920943844
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {
-                "marker-color": "#7e7e7e",
-                "marker-size": "medium",
-                "marker-symbol": "",
-                "name": "Salvador da Bahia",
-                "size": 272
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -38.49609375,
-                  -12.940322128384613
-                ]
-              }
-            }
-          ]
-        }
-       
-     var placesLeaflet = L.geoJson(places).addTo(map);
     
     
-    console.log(places)
       
-    L.geoJson(places, {
+    L.geoJson(plants, {
             pointToLayer: function(feature, latlng){
-                console.log (feature.properties.name);
-                return L.circle(latlng, feature.properties.size*100);
-                //style : function ( );
-                }
+            return L.circleMarker(latlng, {
+//                    color: 'orange',
+//                    weight: 1,
+//                    fillColor: 'yellow',
+//                    radius: 2
+                    color: 'orange',
+                    weight: 1,
+                    fillColor: "red",
+                    fillOpacity: 8,
+                    radius: 2
+              });
+
+         },
+        filter: function(feature, layer) {
+            if(feature.properties.capacity_mw > 500 && 
+                feature.properties.fuel_source.Wind){
+                return feature;   //these are the most powerful wind plants.
+        }
+}
         }).addTo(map);
     </script>
     
