@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 08 Starter</title>
+    <title>Lab 08- Laura Brown</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -49,45 +49,105 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Largest Wind Plants</h1>
+        <h2>Support Green Energy!</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Laura Brown</p>
+        <p>The data are 6900 electrical generating power plants across the US obtained from the {EIA's form 923](http://www.eia.gov/electricity/data/eia923/).</p>
     </footer>
 
     <script src="power-plants.js"></script>
     <script>
 
-      var map = L.map('map', {
-          center: [36,-94],
-          zoom: 4,
-      });
-      
-      var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-          subdomains: 'abcd',
-          maxZoom: 19
-      });  
-      
-      tiles.addTo(map);
-      
-      L.geoJson(plants, {
-          pointToLayer: function(feature,latlng) {
-              return L.circleMarker(latlng, {
-                 color: 'orange',
-                 weight: 1,
-                 fillColor: 'yellow',
-                 fillOpacity: 1,
-                 radius: 2
-              });   
-          }
-      }).addTo(map);
+        
+     var map = L.map('map', {
+        center: [36, -94], 
+        zoom: 4,
+    });
 
+    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    });  
+        
+    tiles.addTo(map);
+    
+    
+    
+    plants.features.sort(function(a, b) {
+        return b.properties.capacity_mw - a.properties.capacity_mw;
+    });
+      
+    
+        
+    L.geoJson(plants, {
+            pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng, {                  
+                    color: 'orange',
+                    weight: 1,
+                    fillColor: "green",
+                    fillOpacity: .8,
+                    radius: getRadius(feature.properties.capacity_mw),
+             
+              });
+
+         },
+        
+        onEachFeature: function(feature, layer) {
+            layer.on('mouseover', function() {
+                layer.setStyle({
+                    fillColor: 'blue'
+                });
+            });
+            layer.on('mouseout', function() {
+                layer.setStyle({
+                    fillColor: 'green'
+                });
+            });
+            
+            
+            var popup= "<b> Plant Name: </b>" + feature.properties.plant_name + 
+                "<br> <b>Wind Output: </b> " + feature.properties.capacity_mw + " MW" ;
+            
+            
+            
+              layer.bindPopup(popup);             
+            
+//                var totalTypes= for(var i = 0; i < feature.properties.fuel_source.length; i++) {
+//                 "<b>"+feature.properties.fuel_source.length[i]+"</b><br>"};
+            //I think this is how you would do the challenge and the bolding; however, the style rules are breaking my popup
+            //"Uncaught SyntaxError: missing ) after argument list
+                       
+        
+        },
+        
+        filter: function(feature, layer) {
+            if(feature.properties.capacity_mw > 100 && 
+                feature.properties.fuel_source.Wind){
+                return feature;   //these are the most powerful wind plants.
+            }
+          
+      },
+        
+        
+          
+       
+        
+    }).addTo(map);
+        
+        
+     
+        function getRadius(area){
+            var radius = Math.sqrt(area/Math.PI);
+            return radius * .6; 
+            }
+             
+    
                   
     </script>
     

@@ -97,12 +97,13 @@
               });
 
          },
+        
         filter: function(feature, layer) {
             if(feature.properties.capacity_mw > 500 && 
                 feature.properties.fuel_source.Wind){
                 return feature;   //these are the most powerful wind plants.
-        }
-}
+                }
+            }
         }).addTo(map);
     </script>
     
