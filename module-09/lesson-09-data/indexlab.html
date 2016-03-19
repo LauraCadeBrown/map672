@@ -87,8 +87,9 @@
 
 var layerInfo = {
     coalLayer: {source:"Coal", color:'#ff7f50'}, 
+    nuclearLayer: {source:"Nuclear", color: '#8a2be2'},
     gasLayer: {source:"Natural Gas", color:'#a6cee3'},
-    nuclearLayer: {source:"Nuclear", color: '8B008B'},
+    
 };
 
 var geoJsonLayers = {};
@@ -117,13 +118,13 @@ for(var layer in layerInfo) {
 
 function getRadius(val) {
     var radius = Math.sqrt(val/Math.PI);
-    return radius * .8;   
+    return radius * .3;   
 }
 
 var sourcesLabels = {
-    "<b style='color:'#ff7f50'>Coal</b>": geoJsonLayers.coalLayer,
+    "<b style='color:#ff7f50'>Coal</b>": geoJsonLayers.coalLayer,
     "<b style='color:#a6cee3'>Natural Gas</b>": geoJsonLayers.gasLayer,
-    "<b style='color:#8B008B'>Nuclear</b>": geoJsonLayers.nuclearLayer,
+    "<b style='color:#8a2be2'>Nuclear</b>": geoJsonLayers.nuclearLayer,
 }
 
 
